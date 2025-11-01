@@ -15,6 +15,7 @@ local scripts = {
             "seraphim",
             "revelation",
             "plan_c",
+            "stat_changes",
         }
     }
 }
