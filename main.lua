@@ -4,6 +4,7 @@ local mod = RgonBackport
 
 RgonBackport.SFX = SFXManager()
 RgonBackport.Game = Game()
+RgonBackport.ItemConfig = Isaac.GetItemConfig()
 
 local scripts = {
     util = {
@@ -16,7 +17,10 @@ local scripts = {
             "revelation",
             "plan_c",
             "stat_changes",
-        }
+        },
+        pills = {
+            "gulp"
+        },
     }
 }
 
