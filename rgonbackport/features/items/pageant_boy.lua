@@ -50,7 +50,6 @@ function mod:PageantCollect(itemID, _, firstTime, _, _, player)
             end
         end
 
-        print("added availableTrinkets", #availableTrinkets)
         if #availableTrinkets == 0 then
             return
         end
