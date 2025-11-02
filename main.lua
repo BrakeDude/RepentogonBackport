@@ -22,6 +22,7 @@ local scripts = {
         pills = {
             "addicted",
             "gulp",
+            "percs",
         },
     }
 }
