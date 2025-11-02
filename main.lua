@@ -25,8 +25,11 @@ local scripts = {
             "percs",
         },
         trinkets = {
-            "moms_toenail"
-        }
+            "moms_toenail",
+        },
+        misc = {
+            "dogma_bombs",
+        },
     }
 }
 
