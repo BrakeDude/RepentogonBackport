@@ -69,7 +69,7 @@ if REPENTOGON and REPENTANCE_PLUS then
     end
 else
     -- Render a warning in the first room that the mod is not active
-    mod:AddCallback(ModCallbacks.MC_POST_HUD_RENDER, function()
+    mod:AddCallback(ModCallbacks.MC_POST_RENDER, function()
         local room = mod.Game:GetRoom()
         local level = mod.Game:GetLevel()
         if (
