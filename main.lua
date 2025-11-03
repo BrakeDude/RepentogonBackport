@@ -26,6 +26,7 @@ local scripts = {
         },
         trinkets = {
             "moms_toenail",
+            "louse",
         },
         misc = {
             "dogma_bombs",
