@@ -62,7 +62,7 @@ for itemId, stats in pairs(mod.ItemStatChanges) do
     end
 
     for property in pairs(stats) do
-        if property == "Damage" then
+        if property == "FlatDamage" or property == "Damage" then
             config.CacheFlags = config.CacheFlags | CacheFlag.CACHE_DAMAGE
         elseif property == "ShotSpeed" then
             config.CacheFlags = config.CacheFlags | CacheFlag.CACHE_SHOTSPEED
@@ -70,9 +70,8 @@ for itemId, stats in pairs(mod.ItemStatChanges) do
             config.CacheFlags = config.CacheFlags | CacheFlag.CACHE_RANGE
         elseif property == "Luck" then
             config.CacheFlags = config.CacheFlags | CacheFlag.CACHE_LUCK
-        elseif property == "FireRate" or property == "Tears" then
+        elseif property == "FlatTears" or property == "Tears" then
             config.CacheFlags = config.CacheFlags | CacheFlag.CACHE_FIREDELAY
-            print("hi")
         end
     end
 end
@@ -141,10 +140,10 @@ function mod:ChangeTearsDamage(player, cacheFlag, current)
                 end
 
                 if (
-                    stat == "Tears"
-                    or stat == "FlatTears"
-                    or stat == "Damage"
-                    or stat == "FlatDamage"
+                    (stat == "Tears" and cacheFlag == EvaluateStatStage.TEARS_UP)
+                    or (stat == "FlatTears" and cacheFlag == EvaluateStatStage.FLAT_TEARS)
+                    or (stat == "Damage" and cacheFlag == EvaluateStatStage.DAMAGE_UP)
+                    or (stat == "FlatDamage" and cacheFlag == EvaluateStatStage.FLAT_DAMAGE)
                 ) then
                     return current + amount
                 end
