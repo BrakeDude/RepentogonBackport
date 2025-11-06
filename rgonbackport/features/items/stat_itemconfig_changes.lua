@@ -37,23 +37,29 @@ mod.ItemStatChanges = {
 mod.TrinketStatChanges = {
     [TrinketType.TRINKET_LAZY_WORM] = {
         Damage = .5,
-
     },
     [TrinketType.TRINKET_BOBS_BLADDER] = {
         ItemConfigChanges = {
             TagsAdd = ItemConfig.TAG_BOB,
         },
     },
+    [TrinketType.TRINKET_EQUALITY] = {
+        ItemConfigChanges = {
+            CacheFlagsAdd = CacheFlag.CACHE_FIREDELAY,
+        },
+    }
 }
 
--- Handle item config changes
-for itemId, stats in pairs(mod.ItemStatChanges) do
-    local config = mod.ItemConfig:GetCollectible(itemId)
+local function updateItemConfig(config, stats)
     if stats.ItemConfigChanges then
         for property, val in pairs(stats.ItemConfigChanges) do
             if property == "TagsAdd" then
                 if config.Tags & val ~= val then
                     config.Tags = config.Tags | val
+                end
+            elseif property == "CacheFlagsAdd" then
+                if config.CacheFlags & val ~= val then
+                    config.CacheFlags = config.CacheFlags | val
                 end
             else
                 config[property] = val
@@ -76,16 +82,15 @@ for itemId, stats in pairs(mod.ItemStatChanges) do
     end
 end
 
----@param player EntityPlayer
----@param trinketType TrinketType
-function mod:UpdateTrinketCache(player, trinketType)
-    ---@type TrinketType
-    local maskedTrinketType = trinketType & TrinketType.TRINKET_ID_MASK
-    if maskedTrinketType == TrinketType.TRINKET_LAZY_WORM then
-        player:AddCacheFlags(CacheFlag.CACHE_DAMAGE) -- probably should be changed with different approach to not constantly calling AddCacheFlags
-    end
+-- Handle item config changes
+for itemId, stats in pairs(mod.ItemStatChanges) do
+    local config = mod.ItemConfig:GetCollectible(itemId)
+    updateItemConfig(config, stats)
+end
 
-    player:EvaluateItems()
+for trinketId, stats in pairs(mod.TrinketStatChanges) do
+    local config = mod.ItemConfig:GetTrinket(trinketId)
+    updateItemConfig(config, stats)
 end
 
 ---@param player EntityPlayer
@@ -152,7 +157,5 @@ function mod:ChangeTearsDamage(player, cacheFlag, current)
     end
 end
 
-mod:AddCallback(ModCallbacks.MC_POST_TRIGGER_TRINKET_ADDED, mod.UpdateTrinketCache)
-mod:AddCallback(ModCallbacks.MC_POST_TRIGGER_TRINKET_REMOVED, mod.UpdateTrinketCache)
 mod:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, mod.ChangeStats)
 mod:AddCallback(ModCallbacks.MC_EVALUATE_STAT, mod.ChangeTearsDamage)

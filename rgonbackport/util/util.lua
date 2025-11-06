@@ -47,3 +47,11 @@ function mod:PerformPillUse(config, pillColor, player, useFlags, isHorse)
     mod.Game:SetBloom(30, 1)
     player:AnimatePill(pillColor, "UseItem")
 end
+
+function mod:ToTPS(maxFireDelay)
+    return 30 / (maxFireDelay + 1)
+end
+
+function mod:ToMFD(tearsPerSecond)
+    return (30 / tearsPerSecond) - 1
+end

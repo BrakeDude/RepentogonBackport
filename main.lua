@@ -26,6 +26,7 @@ local scripts = {
         trinkets = {
             "moms_toenail",
             "missing_poster",
+            "equality",
             "louse",
         },
         misc = {
