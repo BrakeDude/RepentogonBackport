@@ -29,8 +29,11 @@ local scripts = {
             "equality",
             "louse",
         },
-        misc = {
+        fixes = {
             "dogma_bombs",
+        },
+        misc = {
+
         },
     },
 }
