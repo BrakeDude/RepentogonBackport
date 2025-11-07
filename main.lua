@@ -14,6 +14,7 @@ local scripts = {
     },
     features = {
         items = {
+            "blood_rights",
             "plan_c",
             "pageant_boy",
             "stat_itemconfig_changes",

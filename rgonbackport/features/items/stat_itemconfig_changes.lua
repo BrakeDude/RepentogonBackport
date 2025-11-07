@@ -14,6 +14,11 @@ local mod = RgonBackport
 
 ---@type table<CollectibleType, ItemStats>
 mod.ItemStatChanges = {
+    [CollectibleType.COLLECTIBLE_BLOOD_RIGHTS] = {
+        ItemConfigChanges = {
+            CacheFlagsAdd = CacheFlag.CACHE_FIREDELAY,
+        },
+    },
     [CollectibleType.COLLECTIBLE_2SPOOKY] = {
         FlatTears = 0.5,
         ShotSpeed = 0.2,
@@ -47,7 +52,7 @@ mod.TrinketStatChanges = {
         ItemConfigChanges = {
             CacheFlagsAdd = CacheFlag.CACHE_FIREDELAY,
         },
-    }
+    },
 }
 
 local function updateItemConfig(config, stats)
@@ -133,6 +138,10 @@ function mod:ChangeStats(player, cacheFlag)
 end
 
 -- Only handles different tears ups and damage ups.
+---@param player EntityPlayer
+---@param cacheFlag integer
+---@param current number
+---@return number?
 function mod:ChangeTearsDamage(player, cacheFlag, current)
     for itemId, stats in pairs(mod.ItemStatChanges) do
         local count = player:GetCollectibleNum(itemId)
