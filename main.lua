@@ -29,6 +29,7 @@ local scripts = {
             "missing_poster",
             "equality",
             "louse",
+            "special_rooms_trinkets",
         },
         fixes = {
             "dogma_bombs",
