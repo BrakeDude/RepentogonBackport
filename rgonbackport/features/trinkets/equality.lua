@@ -49,9 +49,8 @@ function mod:EqualityEvaluateStat(player)
         local keys = player:GetNumKeys()
 
         if (
-            coins == oldCoins
-            and keys == oldKeys
-            and bombs == oldBombs
+            bombs == coins
+            and keys == coins
         ) then
             local tears = mod:ToTPS(player.MaxFireDelay)
             tears = tears + (Constants.FIRE_RATE * trinketMult)
