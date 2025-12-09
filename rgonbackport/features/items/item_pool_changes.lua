@@ -21,6 +21,11 @@ mod.ItemPoolChanges = {
 			ShouldRemove = true,
 		},
 	},
+	[ItemPoolType.POOL_GREED_DEVIL] = {
+		[CollectibleType.COLLECTIBLE_DRY_BABY] = {
+			DecreaseBy = 1,
+		},
+	}
 }
 
 for poolType, pools in pairs(mod.ItemPoolChanges) do
