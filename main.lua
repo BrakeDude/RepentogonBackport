@@ -37,7 +37,8 @@ local scripts = {
         },
         fixes = {
             "dogma_bombs",
-            "swallowed_m80"
+            "swallowed_m80",
+            "bloaty",
         },
         misc = {
 
