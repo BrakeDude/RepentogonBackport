@@ -43,8 +43,12 @@ function mod:RerollRemovedItemsFromPool(selectedCollectible, poolType, decrease,
 	local newCollectible = selectedCollectible
 	local antisoftlockCounter = 0
 	local rng = RNG(seed)
-	while mod.ItemPoolChanges[poolType] and mod.ItemPoolChanges[poolType][newCollectible]
-	and mod.ItemPoolChanges[poolType][newCollectible].ShouldRemove and antisoftlockCounter <= 100 do
+	while (
+		mod.ItemPoolChanges[poolType]
+		and mod.ItemPoolChanges[poolType][newCollectible]
+		and mod.ItemPoolChanges[poolType][newCollectible].ShouldRemove
+		and antisoftlockCounter <= 100
+ 	) do
 		rng:Next()
 		newCollectible = itemPool:GetCollectible(poolType, false, rng:GetSeed())
 		antisoftlockCounter = antisoftlockCounter + 1
