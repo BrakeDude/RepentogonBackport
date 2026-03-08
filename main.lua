@@ -22,6 +22,7 @@ local scripts = {
             "pageant_boy",
             "item_pool_changes",
             "stat_itemconfig_changes",
+            "mega_blast"
         },
         pills = {
             "addicted",
